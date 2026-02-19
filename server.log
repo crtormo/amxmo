@@ -1,0 +1,36 @@
+nohup: no se tendrá en cuenta la entrada
+Starting local server at http://localhost:8000
+Press Ctrl+C to stop
+127.0.0.1 - - [18/Feb/2026 20:58:49] "HEAD /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [18/Feb/2026 20:59:02] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [18/Feb/2026 20:59:02] "GET /style.css HTTP/1.1" 200 -
+127.0.0.1 - - [18/Feb/2026 20:59:02] "GET /script.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Feb/2026 20:59:03] code 404, message File not found
+127.0.0.1 - - [18/Feb/2026 20:59:03] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [18/Feb/2026 20:59:03] code 404, message File not found
+127.0.0.1 - - [18/Feb/2026 20:59:03] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [18/Feb/2026 20:59:04] code 404, message File not found
+127.0.0.1 - - [18/Feb/2026 20:59:04] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [18/Feb/2026 20:59:04] code 404, message File not found
+127.0.0.1 - - [18/Feb/2026 20:59:04] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [18/Feb/2026 21:03:57] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [18/Feb/2026 21:03:57] "GET /style.css HTTP/1.1" 200 -
+127.0.0.1 - - [18/Feb/2026 21:03:57] "GET /script.js HTTP/1.1" 200 -
+127.0.0.1 - - [18/Feb/2026 21:03:57] code 404, message File not found
+127.0.0.1 - - [18/Feb/2026 21:03:57] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [18/Feb/2026 21:04:36] "GET /index.html?t=123456 HTTP/1.1" 200 -
+127.0.0.1 - - [18/Feb/2026 21:04:36] "GET /script.js HTTP/1.1" 304 -
+127.0.0.1 - - [18/Feb/2026 21:04:47] code 404, message File not found
+127.0.0.1 - - [18/Feb/2026 21:04:47] "GET /amxmo/index.html HTTP/1.1" 404 -
+127.0.0.1 - - [18/Feb/2026 21:05:15] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [18/Feb/2026 21:05:15] "GET /style.css HTTP/1.1" 304 -
+127.0.0.1 - - [18/Feb/2026 21:05:15] "GET /script.js HTTP/1.1" 304 -
+127.0.0.1 - - [18/Feb/2026 21:05:36] code 404, message File not found
+127.0.0.1 - - [18/Feb/2026 21:05:36] "GET /game.html HTTP/1.1" 404 -
+127.0.0.1 - - [18/Feb/2026 21:05:45] "GET /script.js HTTP/1.1" 304 -
+127.0.0.1 - - [18/Feb/2026 21:05:54] "GET /index.html HTTP/1.1" 304 -
+127.0.0.1 - - [18/Feb/2026 21:06:03] "GET /script.js HTTP/1.1" 304 -
+127.0.0.1 - - [18/Feb/2026 21:07:10] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [18/Feb/2026 21:07:10] "GET /style.css HTTP/1.1" 304 -
+127.0.0.1 - - [18/Feb/2026 21:07:10] "GET /script.js HTTP/1.1" 304 -
+127.0.0.1 - - [18/Feb/2026 21:09:18] "GET /script.js HTTP/1.1" 304 -

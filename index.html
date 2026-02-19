@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amxmo: Automation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Amxmo <span class="subtitle">Visual Automation Protocol</span></h1>
+        </header>
+
+        <div class="game-container">
+            <aside class="sidebar">
+                <div class="manual-panel">
+                    <h3>Manual Básico</h3>
+                    <p><strong>Objetivo:</strong> Extraer recursos y construir una fábrica eficiente.</p>
+                    <ul>
+                        <li><strong>Click Izquierdo:</strong> Colocar edificios.</li>
+                        <li><strong>Modo Demolición:</strong> Eliminar edificios.</li>
+                    </ul>
+                    <p><strong>Recetas:</strong></p>
+                    <ul>
+                        <li>Perforadora requiere Mineral.</li>
+                        <li>Horno requiere Mineral.</li>
+                        <li>Ensambladora requiere Lingotes.</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <canvas id="game-canvas" width="800" height="600"></canvas>
+
+            <aside class="sidebar">
+                <div class="resources-panel">
+                    <h3>Recursos</h3>
+                    <div id="res-iron-ore">Mineral de Hierro: <span>0</span></div>
+                    <div id="res-iron-ingot">Lingote de Hierro: <span>0</span></div>
+                    <div id="res-gear">Engranaje: <span>0</span></div>
+                    <div id="res-copper-ore" class="new">Mineral de Cobre: <span>0</span></div>
+                    <div id="res-copper-ingot" class="new">Lingote de Cobre: <span>0</span></div>
+                    <div id="res-wire" class="new">Cable de Cobre: <span>0</span></div>
+                    <div id="res-stone" class="new">Piedra: <span>0</span></div>
+                    <div id="res-coal" class="new">Carbón: <span>0</span></div>
+                </div>
+
+                <div class="build-panel">
+                    <h3>Construcción</h3>
+                    <!-- Mining Drills -->
+                    <button class="build-btn" onclick="selectBuilding('drill')">
+                        Perforadora (10 Mineral de Hierro)
+                    </button>
+
+                    <!-- Furnaces -->
+                    <button class="build-btn" onclick="selectBuilding('furnace')">
+                        Horno (10 Piedra)
+                    </button>
+
+                    <!-- Crafters -->
+                    <button class="build-btn" onclick="selectBuilding('assembler')">
+                        Ensambladora (10 Engranaje)
+                    </button>
+
+                    <!-- Logistics -->
+                    <button class="build-btn" onclick="selectBuilding('belt')">
+                        Cinta (1 Mineral de Hierro)
+                    </button>
+                    <button class="build-btn" onclick="selectBuilding('inserter')">
+                        Brazo (5 Mineral de Hierro)
+                    </button>
+                    <button class="build-btn" onclick="selectBuilding('filter_inserter')">
+                        Brazo Filtro (5 Mineral de Cobre)
+                    </button>
+
+                    <button class="action-btn delete-mode" onclick="toggleDeleteMode()">
+                        Modo Demolición
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

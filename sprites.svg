@@ -1,0 +1,100 @@
+<svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shine" x="0" y="0" width="100%" height="100%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur"/>
+      <feOffset in="blur" dx="1" dy="1" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Row 1: Resources -->
+  <!-- Iron Ore -->
+  <g transform="translate(0,0)">
+    <circle cx="20" cy="20" r="15" fill="#a1887f" stroke="#5d4037" stroke-width="2"/>
+    <circle cx="15" cy="15" r="5" fill="#d7ccc8" opacity="0.5"/>
+  </g>
+  <!-- Copper Ore -->
+  <g transform="translate(40,0)">
+    <circle cx="20" cy="20" r="15" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+    <circle cx="15" cy="15" r="5" fill="#f39c12" opacity="0.5"/>
+  </g>
+  <!-- Stone -->
+  <g transform="translate(80,0)">
+    <rect x="5" y="5" width="30" height="30" rx="5" fill="#95a5a6" stroke="#7f8c8d" stroke-width="2"/>
+    <path d="M10 10 L30 30 M30 10 L10 30" stroke="#bdc3c7" stroke-width="2"/>
+  </g>
+  <!-- Coal -->
+  <g transform="translate(120,0)">
+    <path d="M10 20 L20 5 L30 20 L25 35 L15 35 Z" fill="#2c3e50" stroke="#000" stroke-width="2"/>
+  </g>
+
+  <!-- Row 2: Products -->
+  <!-- Iron Ingot -->
+  <g transform="translate(0,40)">
+    <rect x="5" y="10" width="30" height="20" rx="2" fill="#bdc3c7" stroke="#7f8c8d" stroke-width="2"/>
+    <path d="M10 15 L30 15" stroke="#ecf0f1" stroke-width="2"/>
+  </g>
+  <!-- Copper Ingot -->
+  <g transform="translate(40,40)">
+    <rect x="5" y="10" width="30" height="20" rx="2" fill="#d35400" stroke="#e67e22" stroke-width="2"/>
+    <path d="M10 15 L30 15" stroke="#f39c12" stroke-width="2"/>
+  </g>
+  <!-- Gear -->
+  <g transform="translate(80,40)">
+    <circle cx="20" cy="20" r="10" fill="none" stroke="#7f8c8d" stroke-width="6" stroke-dasharray="4 2"/>
+    <circle cx="20" cy="20" r="5" fill="#95a5a6"/>
+  </g>
+  <!-- Wire -->
+  <g transform="translate(120,40)">
+    <circle cx="20" cy="20" r="12" fill="none" stroke="#e67e22" stroke-width="3"/>
+    <rect x="18" y="5" width="4" height="10" fill="#e67e22"/>
+    <rect x="18" y="25" width="4" height="10" fill="#e67e22"/>
+  </g>
+
+  <!-- Row 3: Buildings -->
+  <!-- Drill -->
+  <g transform="translate(0,80)">
+    <!-- Base -->
+    <rect x="2" y="2" width="36" height="36" fill="#c0392b" rx="4"/>
+    <!-- Drill Head -->
+    <path d="M20 30 L10 10 L30 10 Z" fill="#f1c40f"/>
+    <animateTransform attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="2s" repeatCount="indefinite"/>
+  </g>
+  <!-- Furnace -->
+  <g transform="translate(40,80)">
+    <rect x="2" y="2" width="36" height="36" fill="#e67e22" rx="4"/>
+    <circle cx="20" cy="20" r="12" fill="#d35400"/>
+    <circle cx="20" cy="20" r="8" fill="#f1c40f">
+       <animate attributeName="r" values="8;10;8" dur="1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  <!-- Assembler -->
+  <g transform="translate(80,80)">
+    <rect x="2" y="2" width="36" height="36" fill="#2980b9" rx="4"/>
+    <rect x="10" y="10" width="20" height="20" fill="#3498db" rx="2"/>
+  </g>
+  <!-- Belt -->
+  <g transform="translate(120,80)">
+    <rect x="0" y="0" width="40" height="40" fill="#555"/>
+    <path d="M10 30 L20 10 L30 30" fill="none" stroke="#aaa" stroke-width="3"/>
+    <path d="M10 35 L20 15 L30 35" fill="none" stroke="#777" stroke-width="3"/>
+  </g>
+
+  <!-- Row 4: Logistics -->
+  <!-- Inserter -->
+  <g transform="translate(0,120)">
+     <rect x="10" y="10" width="20" height="20" fill="#333"/>
+     <rect x="15" y="0" width="10" height="30" fill="#f1c40f"/>
+     <rect x="12" y="0" width="16" height="8" fill="#f39c12"/>
+  </g>
+  <!-- Filter Inserter -->
+  <g transform="translate(40,120)">
+     <rect x="10" y="10" width="20" height="20" fill="#333"/>
+     <rect x="15" y="0" width="10" height="30" fill="#8e44ad"/>
+     <rect x="12" y="0" width="16" height="8" fill="#9b59b6"/>
+     <circle cx="20" cy="15" r="3" fill="#fff"/>
+  </g>
+</svg>
