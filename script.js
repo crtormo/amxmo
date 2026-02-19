@@ -340,6 +340,9 @@ setInterval(() => {
     updateUI();
 }, 50); // Faster tick for smooth movement
 
+const sprites = new Image();
+sprites.src = 'sprites.svg';
+
 // Render Loop
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -349,15 +352,20 @@ function gameLoop() {
         for (let y = 0; y < GRID_HEIGHT; y++) {
             const tile = gameState.map[x][y];
 
-            // Draw Resource
-            if (tile.resourceType) {
-                ctx.fillStyle = RESOURCES[tile.resourceType].color;
-                ctx.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-            }
-
-            // Draw Grid Lines representing tiles
+            // Draw Grid Lines
             ctx.strokeStyle = '#222';
             ctx.strokeRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+
+            // Draw Resource
+            if (tile.resourceType) {
+                let sx = 0, sy = 0;
+                if (tile.resourceType === 'ironOre') sx = 0;
+                else if (tile.resourceType === 'copperOre') sx = 40;
+                else if (tile.resourceType === 'stone') sx = 80;
+                else if (tile.resourceType === 'coal') sx = 120;
+
+                ctx.drawImage(sprites, sx, sy, 40, 40, x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+            }
         }
     }
 
@@ -366,36 +374,55 @@ function gameLoop() {
         const px = b.x * TILE_SIZE;
         const py = b.y * TILE_SIZE;
 
-        if (b.type === 'drill') {
-            ctx.fillStyle = '#e74c3c'; // Red Drill
-            ctx.fillRect(px + 5, py + 5, TILE_SIZE - 10, TILE_SIZE - 10);
-        } else if (b.type === 'furnace') {
-            ctx.fillStyle = '#f39c12'; // Orange Furnace
-            ctx.fillRect(px + 5, py + 5, TILE_SIZE - 10, TILE_SIZE - 10);
-        } else if (b.type === 'assembler') {
-            ctx.fillStyle = '#3498db'; // Blue Assembler
-            ctx.fillRect(px + 5, py + 5, TILE_SIZE - 10, TILE_SIZE - 10);
+        let sx = 0, sy = 80; // Default Row 3
+        let rotate = false;
+
+        if (b.type === 'drill') sx = 0;
+        else if (b.type === 'furnace') sx = 40;
+        else if (b.type === 'assembler') sx = 80;
+        else if (b.type === 'belt') { sx = 120; rotate = true; }
+        else if (b.type === 'inserter') { sx = 0; sy = 120; rotate = true; }
+        else if (b.type === 'filter_inserter') { sx = 40; sy = 120; rotate = true; }
+
+        ctx.save();
+        if (rotate) {
+            ctx.translate(px + TILE_SIZE / 2, py + TILE_SIZE / 2);
+            ctx.rotate(b.direction * Math.PI / 2);
+            ctx.drawImage(sprites, sx, sy, 40, 40, -TILE_SIZE / 2, -TILE_SIZE / 2, TILE_SIZE, TILE_SIZE);
+        } else {
+            ctx.drawImage(sprites, sx, sy, 40, 40, px, py, TILE_SIZE, TILE_SIZE);
         }
+        ctx.restore();
 
         // Production Indicator
         if (b.lastActive && Date.now() - b.lastActive < 800) {
             ctx.fillStyle = '#fff';
             ctx.beginPath();
-            ctx.arc(px + TILE_SIZE / 2, py + TILE_SIZE / 2, 5, 0, Math.PI * 2);
+            ctx.arc(px + TILE_SIZE / 2, py + TILE_SIZE / 2, 4, 0, Math.PI * 2);
             ctx.fill();
-
-            // Optional: Draw product color
-            if (b.lastProduct && RESOURCES[b.lastProduct]) {
-                // But wait, Products are in RESOURCES but maybe not with color?
-                // Let's just use a generic flash for now or specific if defined.
-                // Actually PRODUCTS like ironIngot are in RESOURCES but no color defined in the top object for them?
-                // Let's check lines 7-17 of script.js again.
-            }
         }
     });
 
-    // Draw Cursor Selection Ghost
-    // (Optional enhancement)
+    // Draw Items
+    gameState.items.forEach(item => {
+        const px = item.x * TILE_SIZE;
+        const py = item.y * TILE_SIZE;
+
+        let sx = 0, sy = 40; // Row 2
+        if (item.type === 'ironOre') { sx = 0; sy = 0; }
+        else if (item.type === 'copperOre') { sx = 40; sy = 0; }
+        else if (item.type === 'stone') { sx = 80; sy = 0; }
+        else if (item.type === 'coal') { sx = 120; sy = 0; }
+        else if (item.type === 'ironIngot') sx = 0;
+        else if (item.type === 'copperIngot') sx = 40;
+        else if (item.type === 'gear') sx = 80;
+        else if (item.type === 'wire') sx = 120;
+
+        // Draw smaller item centered
+        const size = 24;
+        const offset = (TILE_SIZE - size) / 2;
+        ctx.drawImage(sprites, sx, sy, 40, 40, px + offset, py + offset, size, size);
+    });
 
     // Draw Tooltip
     if (gameState.hoverTile) {
