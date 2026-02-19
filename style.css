@@ -118,6 +118,83 @@ header h1 {
     transform: scale(0.98);
 }
 
+.build-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    background-image: url('sprites.svg');
+    background-repeat: no-repeat;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* Icon Positions */
+/* Buildings (Row 3 y=80) */
+.icon-drill {
+    background-position: 0 -80px;
+}
+
+.icon-furnace {
+    background-position: -40px -80px;
+}
+
+.icon-assembler {
+    background-position: -80px -80px;
+}
+
+.icon-belt {
+    background-position: -120px -80px;
+}
+
+/* Logistics (Row 4 y=120) */
+.icon-inserter {
+    background-position: 0 -120px;
+}
+
+.icon-filter {
+    background-position: -40px -120px;
+}
+
+/* Resources (Row 1 y=0) */
+.icon-iron-ore {
+    background-position: 0 0;
+}
+
+.icon-copper-ore {
+    background-position: -40px 0;
+}
+
+.icon-stone {
+    background-position: -80px 0;
+}
+
+.icon-coal {
+    background-position: -120px 0;
+}
+
+/* Products (Row 2 y=40) */
+.icon-iron-ingot {
+    background-position: 0 -40px;
+}
+
+.icon-copper-ingot {
+    background-position: -40px -40px;
+}
+
+.icon-gear {
+    background-position: -80px -40px;
+}
+
+.icon-wire {
+    background-position: -120px -40px;
+}
+
 .cost-info {
     font-size: 0.8rem;
     color: #666;
