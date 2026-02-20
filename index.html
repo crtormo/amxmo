@@ -12,80 +12,352 @@
     <div class="container">
         <header>
             <h1>Amxmo <span class="subtitle">Visual Automation Protocol</span></h1>
+            <div id="notifications" class="notifications"></div>
         </header>
 
         <div class="game-container">
-            <aside class="sidebar">
+            <aside class="sidebar left">
                 <div class="manual-panel">
-                    <h3>Manual Básico</h3>
-                    <p><strong>Objetivo:</strong> Extraer recursos y construir una fábrica eficiente.</p>
+                    <h3>📚 Manual Básico</h3>
+                    <p><strong>🎯 Objetivo:</strong> Extraer recursos, investigar tecnologías y construir una fábrica automatizada eficiente.</p>
+                    
+                    <p><strong>🎮 Controles:</strong></p>
                     <ul>
-                        <li><strong>Click Izquierdo:</strong> Colocar edificios.</li>
-                        <li><strong>Modo Demolición:</strong> Eliminar edificios.</li>
+                        <li><strong>Click Izquierdo:</strong> Colocar edificios / Seleccionar.</li>
+                        <li><strong>Click en Minimapa:</strong> Mover cámara a esa posición.</li>
+                        <li><strong>R:</strong> Rotar edificio antes de colocar.</li>
+                        <li><strong>X:</strong> Alternar modo demolición.</li>
+                        <li><strong>WASD / Flechas:</strong> Mover cámara por el mapa.</li>
+                        <li><strong>E:</strong> Recolectar mineral manualmente (hierro, cobre, carbón, piedra). Cooldown: 0.5s (Era 1) / 1s (Era 2+).</li>
+                        <li><strong>P:</strong> Truco - Obtener recursos (debug).</li>
+                        <li><strong>F5:</strong> Guardar partida.</li>
+                        <li><strong>F9:</strong> Cargar partida.</li>
                     </ul>
-                    <p><strong>Recetas:</strong></p>
+                    
+                    <p><strong>⛏️ Extracción de Recursos:</strong></p>
                     <ul>
-                        <li>Perforadora requiere Mineral.</li>
-                        <li>Horno requiere Mineral.</li>
-                        <li>Ensambladora requiere Lingotes.</li>
+                        <li><strong>Manual (Tecla E):</strong> Recolecta minerales básicos manualmente (hierro, cobre, carbón, piedra). Cooldown: 0.5s al inicio, 1s después de investigar Electricidad. No funciona con petróleo ni uranio.</li>
+                        <li><strong>Perforadora:</strong> Extrae minerales automáticamente solo si hay transporte cerca (cinta, brazo filtro o cofre).</li>
+                        <li><strong>Bomba:</strong> Extrae petróleo automáticamente (debe colocarse sobre manchas de petróleo negras).</li>
+                        <li><strong>Perforadora Eléctrica:</strong> Más rápida, requiere electricidad.</li>
+                    </ul>
+                    
+                    <p><strong>🏭 Procesamiento:</strong></p>
+                    <ul>
+                        <li><strong>Horno:</strong> Funde minerales en lingotes (hierro → lingote de hierro).</li>
+                        <li><strong>Ensambladora:</strong> Crea componentes (engranajes, cables, circuitos).</li>
+                        <li><strong>Refinería:</strong> Procesa petróleo en plástico y combustible.</li>
+                        <li><strong>Centrífuga:</strong> Procesa uranio para energía nuclear.</li>
+                    </ul>
+                    
+                    <p><strong>⚡ Energía:</strong></p>
+                    <ul>
+                        <li><strong>Máquina de Vapor:</strong> Quema carbón para generar electricidad.</li>
+                        <li><strong>Panel Solar:</strong> Genera energía durante el día.</li>
+                        <li><strong>Reactor Nuclear:</strong> Alta producción con uranio (desbloquea con investigación).</li>
+                        <li><strong>Poste Eléctrico:</strong> Conecta edificios a la red eléctrica.</li>
+                    </ul>
+                    
+                    <p><strong>📦 Logística:</strong></p>
+                    <ul>
+                        <li><strong>Cinta Transportadora:</strong> Mueve ítems entre edificios.</li>
+                        <li><strong>Insertador:</strong> Transfiere ítems entre contenedores/cintas.</li>
+                        <li><strong>Cofre:</strong> Almacena ítems (capacidad limitada).</li>
+                        <li><strong>Almacenador:</strong> Recoge automáticamente objetos de las cintas y los añade a tu inventario.</li>
+                        <li><strong>Tanque:</strong> Almacena fluidos (petróleo, agua).</li>
+                    </ul>
+                    
+                    <p><strong>🌍 Biomas:</strong></p>
+                    <ul>
+                        <li><strong>Pradera:</strong> Recursos balanceados.</li>
+                        <li><strong>Desierto:</strong> Más cobre y petróleo.</li>
+                        <li><strong>Bosque:</strong> Más carbón.</li>
+                        <li><strong>Tundra:</strong> Más hierro y carbón.</li>
+                        <li><strong>Volcánico:</strong> Más hierro, cobre y piedra.</li>
+                    </ul>
+                    
+                    <p><strong>🔬 Investigación:</strong></p>
+                    <ul>
+                        <li>Usa el botón "Investigar" para desbloquear nuevas tecnologías.</li>
+                        <li>Requiere circuitos electrónicos y otros recursos.</li>
+                        <li>Desbloquea edificios avanzados como energía solar, nuclear, trenes, etc.</li>
+                    </ul>
+                    
+                    <p><strong>⚔️ Defensa:</strong></p>
+                    <ul>
+                        <li><strong>Torreta:</strong> Dispara a enemigos automáticamente.</li>
+                        <li><strong>Muro:</strong> Bloquea el paso de enemigos.</li>
+                        <li><strong>Puerta:</strong> Permite paso controlado a través de muros.</li>
                     </ul>
                 </div>
             </aside>
 
-            <canvas id="game-canvas" width="800" height="600"></canvas>
-
-            <aside class="sidebar">
-                <div class="resources-panel">
-                    <h3>Recursos</h3>
-                    <div id="res-iron-ore">Mineral de Hierro: <span>0</span></div>
-                    <div id="res-iron-ingot">Lingote de Hierro: <span>0</span></div>
-                    <div id="res-gear">Engranaje: <span>0</span></div>
-                    <div id="res-copper-ore" class="new">Mineral de Cobre: <span>0</span></div>
-                    <div id="res-copper-ingot" class="new">Lingote de Cobre: <span>0</span></div>
-                    <div id="res-wire" class="new">Cable de Cobre: <span>0</span></div>
-                    <div id="res-stone" class="new">Piedra: <span>0</span></div>
-                    <div id="res-coal" class="new">Carbón: <span>0</span></div>
+            <div class="main-area">
+                <div class="canvas-container">
+                    <canvas id="game-canvas" width="800" height="600"></canvas>
+                    <div class="minimap" id="minimap">
+                        <canvas id="minimap-canvas" width="150" height="150"></canvas>
+                    </div>
                 </div>
+                
+                <div class="resources-bar">
+                    <h3>📦 Recursos</h3>
+                    <div class="resource-grid">
+                        <div id="res-iron-ore" class="resource-item">
+                            <span class="icon icon-iron-ore"></span>
+                            <span class="name">Hierro</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-copper-ore" class="resource-item">
+                            <span class="icon icon-copper-ore"></span>
+                            <span class="name">Cobre</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-stone" class="resource-item">
+                            <span class="icon icon-stone"></span>
+                            <span class="name">Piedra</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-coal" class="resource-item">
+                            <span class="icon icon-coal"></span>
+                            <span class="name">Carbón</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-iron-ingot" class="resource-item">
+                            <span class="icon icon-iron-ingot"></span>
+                            <span class="name">Lingote Fe</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-copper-ingot" class="resource-item">
+                            <span class="icon icon-copper-ingot"></span>
+                            <span class="name">Lingote Cu</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-gear" class="resource-item">
+                            <span class="icon icon-gear"></span>
+                            <span class="name">Engranaje</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-wire" class="resource-item">
+                            <span class="icon icon-wire"></span>
+                            <span class="name">Cable</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-electronic-circuit" class="resource-item">
+                            <span class="icon icon-circuit"></span>
+                            <span class="name">Circuito</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-plastic" class="resource-item">
+                            <span class="icon icon-plastic"></span>
+                            <span class="name">Plástico</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-steel" class="resource-item" style="display:none">
+                            <span class="icon icon-steel"></span>
+                            <span class="name">Acero</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-battery" class="resource-item" style="display:none">
+                            <span class="icon icon-battery"></span>
+                            <span class="name">Batería</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-advanced-circuit" class="resource-item" style="display:none">
+                            <span class="icon icon-advanced-circuit"></span>
+                            <span class="name">Circ. Adv.</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-uranium-ore" class="resource-item">
+                            <span class="icon icon-uranium-ore"></span>
+                            <span class="name">Uranio</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-uranium-cell" class="resource-item">
+                            <span class="icon icon-uranium-cell"></span>
+                            <span class="name">Celda Nuc.</span>
+                            <span class="value">0</span>
+                        </div>
+                        <div id="res-chests" class="resource-item">
+                            <span class="icon icon-chest"></span>
+                            <span class="name">Cofres</span>
+                            <span class="value">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <aside class="sidebar right">
                 <div class="build-panel">
                     <h3>Construcción</h3>
-                    <!-- Mining Drills -->
-                    <button class="build-btn" onclick="selectBuilding('drill')">
-                        <span class="icon icon-drill"></span>
-                        Perforadora (10 Mineral de Hierro)
-                    </button>
+                    
+                    <div class="build-category">
+                        <h4>Extracción</h4>
+                        <button class="build-btn" onclick="selectBuilding('drill')">
+                            <span class="icon icon-drill"></span>
+                            <span class="btn-text">Perforadora<br><small>10 Hierro</small></span>
+                        </button>
+                        <button id="btn-electric-drill" class="build-btn" onclick="selectBuilding('electric_drill')" style="display:none">
+                            <span class="icon icon-electric-drill"></span>
+                            <span class="btn-text">Taladro Eléc.<br><small>10 Hierro + 5 Engr.</small></span>
+                        </button>
+                        <button id="btn-pumpjack" class="build-btn" onclick="selectBuilding('pumpjack')" style="display:none">
+                            <span class="icon icon-pumpjack"></span>
+                            <span class="btn-text">Bomba<br><small>5 Circ. + 20 Hierro</small></span>
+                        </button>
+                    </div>
+                    
+                    <div class="build-category">
+                        <h4>Procesamiento</h4>
+                        <button class="build-btn" onclick="selectBuilding('furnace')">
+                            <span class="icon icon-furnace"></span>
+                            <span class="btn-text">Horno<br><small>10 Piedra</small></span>
+                        </button>
+                        <button class="build-btn" onclick="selectBuilding('assembler')">
+                            <span class="icon icon-assembler"></span>
+                            <span class="btn-text">Ensambladora<br><small>10 Engranajes</small></span>
+                        </button>
+                        <button id="btn-refinery" class="build-btn" onclick="selectBuilding('refinery')" style="display:none">
+                            <span class="icon icon-refinery"></span>
+                            <span class="btn-text">Refinería<br><small>10 Circ. + 20 Piedra</small></span>
+                        </button>
+                        <button id="btn-centrifuge" class="build-btn" onclick="selectBuilding('centrifuge')" style="display:none">
+                            <span class="icon icon-centrifuge"></span>
+                            <span class="btn-text">Centrífuga<br><small>20 Circ. + 50 Hierro</small></span>
+                        </button>
+                    </div>
 
-                    <!-- Furnaces -->
-                    <button class="build-btn" onclick="selectBuilding('furnace')">
-                        <span class="icon icon-furnace"></span>
-                        Horno (10 Piedra)
-                    </button>
+                    <div class="build-category">
+                        <h4>Logística</h4>
+                        <button class="build-btn" onclick="selectBuilding('belt')">
+                            <span class="icon icon-belt"></span>
+                            <span class="btn-text">Cinta<br><small>1 Hierro</small></span>
+                        </button>
+                        <button class="build-btn" onclick="selectBuilding('filter_inserter')">
+                            <span class="icon icon-filter"></span>
+                            <span class="btn-text">Brazo Filtro<br><small>5 Cobre</small></span>
+                        </button>
+                        <button id="btn-chest" class="build-btn" onclick="selectBuilding('chest')" style="display:none">
+                            <span class="icon icon-chest"></span>
+                            <span class="btn-text">Cofre<br><small>8 Hierro + 2 Engr.</small></span>
+                        </button>
+                        <button class="build-btn" onclick="selectBuilding('storage_unit')">
+                            <span class="icon icon-storage"></span>
+                            <span class="btn-text">Almacenador<br><small>10 Hierro + 5 Engr.</small></span>
+                        </button>
+                        <button id="btn-tank" class="build-btn" onclick="selectBuilding('tank')" style="display:none">
+                            <span class="icon icon-tank"></span>
+                            <span class="btn-text">Tanque<br><small>20 Hierro + 5 Engr.</small></span>
+                        </button>
+                    </div>
 
-                    <!-- Crafters -->
-                    <button class="build-btn" onclick="selectBuilding('assembler')">
-                        <span class="icon icon-assembler"></span>
-                        Ensambladora (10 Engranaje)
-                    </button>
-
-                    <!-- Logistics -->
-                    <button class="build-btn" onclick="selectBuilding('belt')">
-                        <span class="icon icon-belt"></span>
-                        Cinta (1 Mineral de Hierro)
-                    </button>
-                    <button class="build-btn" onclick="selectBuilding('inserter')">
-                        <span class="icon icon-inserter"></span>
-                        Brazo (5 Mineral de Hierro)
-                    </button>
-                    <button class="build-btn" onclick="selectBuilding('filter_inserter')">
-                        <span class="icon icon-filter"></span>
-                        Brazo Filtro (5 Mineral de Cobre)
-                    </button>
+                    <div class="build-category">
+                        <h4>Energía</h4>
+                        <button id="btn-pole" class="build-btn" onclick="selectBuilding('pole')" style="display:none">
+                            <span class="icon icon-pole"></span>
+                            <span class="btn-text">Poste<br><small>2 Cables</small></span>
+                        </button>
+                        <button id="btn-steam-engine" class="build-btn" onclick="selectBuilding('steam_engine')" style="display:none">
+                            <span class="icon icon-engine"></span>
+                            <span class="btn-text">Motor Vapor<br><small>20 Hierro</small></span>
+                        </button>
+                        <button id="btn-solar-panel" class="build-btn" onclick="selectBuilding('solar_panel')" style="display:none">
+                            <span class="icon icon-solar-panel"></span>
+                            <span class="btn-text">Panel Solar<br><small>5 Circ. + 10 Cobre</small></span>
+                        </button>
+                        <button id="btn-nuclear-reactor" class="build-btn" onclick="selectBuilding('nuclear_reactor')" style="display:none">
+                            <span class="icon icon-nuclear-reactor"></span>
+                            <span class="btn-text">Reactor Nuclear<br><small>100 Circ. + 50 Plást.</small></span>
+                        </button>
+                    </div>
+                    
+                    <div class="build-category" id="military-category" style="display:none">
+                        <h4>Militar</h4>
+                        <button id="btn-turret" class="build-btn" onclick="selectBuilding('turret')" style="display:none">
+                            <span class="icon icon-turret"></span>
+                            <span class="btn-text">Torreta<br><small>10 Hierro + 5 Engr.</small></span>
+                        </button>
+                        <button id="btn-wall" class="build-btn" onclick="selectBuilding('wall')" style="display:none">
+                            <span class="icon icon-wall"></span>
+                            <span class="btn-text">Muro<br><small>5 Piedra</small></span>
+                        </button>
+                    </div>
 
                     <button class="action-btn delete-mode" onclick="toggleDeleteMode()">
-                        Modo Demolición
+                        <span>🗑️</span> Modo Demolición
                     </button>
                 </div>
             </aside>
+            
+            <div id="crafting-menu" class="panel overlay-panel" style="display: none;">
+                <h3>Maletín de Emergencia</h3>
+                <button class="close-btn" onclick="toggleCraftingMenu()">X</button>
+
+                <h4>Fabricación Manual</h4>
+                <div class="recipes">
+                    <button onclick="craftItem('ironIngot')">Lingote Hierro (1 Mineral)</button>
+                    <button onclick="craftItem('copperIngot')">Lingote Cobre (1 Mineral)</button>
+                    <button onclick="craftItem('gear')">Engranaje (2 Lingotes Hierro)</button>
+                    <button onclick="craftItem('wire')">Cable (1 Lingote Cobre)</button>
+                    <button id="btn-craft-circuit" onclick="craftItem('electronicCircuit')" style="display:none">
+                        Circuito (3 Cables + 1 Hierro)
+                    </button>
+                    <button id="btn-craft-steel" onclick="craftItem('steel')" style="display:none">
+                        Acero (5 Hierro + 1 Carbón)
+                    </button>
+                    <button id="btn-craft-battery" onclick="craftItem('battery')" style="display:none">
+                        Batería (1 Cobre + 1 Plástico + 1 Circuito)
+                    </button>
+                    <button id="btn-craft-advanced-circuit" onclick="craftItem('advancedCircuit')" style="display:none">
+                        Circuito Avanzado (2 Circuitos + 2 Plástico + 4 Cables)
+                    </button>
+                </div>
+
+                <hr style="border-color: #444; margin: 15px 0;">
+
+                <h4>Investigación</h4>
+                <div id="research-list">
+                </div>
+                
+                <hr style="border-color: #444; margin: 15px 0;">
+                
+                <h4>Acciones</h4>
+                <button class="action-btn" onclick="saveGame()">💾 Guardar Partida (F5)</button>
+                <button class="action-btn" onclick="loadGame()">📂 Cargar Partida (F9)</button>
+                <button class="action-btn" onclick="toggleStats()">📊 Estadísticas</button>
+                
+                <button class="action-btn close-btn" onclick="toggleCraftingMenu()">Cerrar</button>
+            </div>
+            
+            <div id="stats-panel" class="panel overlay-panel" style="display: none;">
+                <h3>Estadísticas</h3>
+                <button class="close-btn" onclick="toggleStats()">X</button>
+                
+                <div class="stats-content">
+                    <div class="stat-item">
+                        <span class="stat-label">Tiempo de juego:</span>
+                        <span class="stat-value" id="stat-playtime">0h 0m</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Edificios construidos:</span>
+                        <span class="stat-value" id="stat-buildings">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Enemigos eliminados:</span>
+                        <span class="stat-value" id="stat-enemies">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Items producidos:</span>
+                        <span class="stat-value" id="stat-produced">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Tecnologías desbloqueadas:</span>
+                        <span class="stat-value" id="stat-tech">0/16</span>
+                    </div>
+                </div>
+                
+                <button class="action-btn close-btn" onclick="toggleStats()">Cerrar</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

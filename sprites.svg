@@ -1,100 +1,718 @@
-<svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+<svg width="320" height="768" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <filter id="shine" x="0" y="0" width="100%" height="100%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur"/>
-      <feOffset in="blur" dx="1" dy="1" result="shadow"/>
+    <!-- Filtros para efectos 3D -->
+    <filter id="shadow3d" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="3" dy="4" stdDeviation="2" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
       <feMerge>
-        <feMergeNode in="shadow"/>
+        <feMergeNode in="coloredBlur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
+    
+    <linearGradient id="metal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0e0e0"/>
+      <stop offset="50%" style="stop-color:#9e9e9e"/>
+      <stop offset="100%" style="stop-color:#616161"/>
+    </linearGradient>
+    
+    <linearGradient id="iron-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b0bec5"/>
+      <stop offset="50%" style="stop-color:#78909c"/>
+      <stop offset="100%" style="stop-color:#455a64"/>
+    </linearGradient>
+    
+    <linearGradient id="copper-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffcc80"/>
+      <stop offset="50%" style="stop-color:#ff9800"/>
+      <stop offset="100%" style="stop-color:#e65100"/>
+    </linearGradient>
+    
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff176"/>
+      <stop offset="50%" style="stop-color:#ffd54f"/>
+      <stop offset="100%" style="stop-color:#ff8f00"/>
+    </linearGradient>
+    
+    <linearGradient id="stone-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#bdbdbd"/>
+      <stop offset="50%" style="stop-color:#757575"/>
+      <stop offset="100%" style="stop-color:#424242"/>
+    </linearGradient>
+    
+    <linearGradient id="coal-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#616161"/>
+      <stop offset="100%" style="stop-color:#212121"/>
+    </linearGradient>
+    
+    <linearGradient id="green-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#76ff03"/>
+      <stop offset="50%" style="stop-color:#64dd17"/>
+      <stop offset="100%" style="stop-color:#33691e"/>
+    </linearGradient>
+    
+    <linearGradient id="circuit-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4caf50"/>
+      <stop offset="50%" style="stop-color:#2e7d32"/>
+      <stop offset="100%" style="stop-color:#1b5e20"/>
+    </linearGradient>
+    
+    <linearGradient id="oil-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#424242"/>
+      <stop offset="100%" style="stop-color:#000000"/>
+    </linearGradient>
+    
+    <linearGradient id="plastic-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5f5f5"/>
+      <stop offset="100%" style="stop-color:#e0e0e0"/>
+    </linearGradient>
+    
+    <linearGradient id="uranium-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ccff90"/>
+      <stop offset="50%" style="stop-color:#76ff03"/>
+      <stop offset="100%" style="stop-color:#33691e"/>
+    </linearGradient>
+    
+    <linearGradient id="danger-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff5252"/>
+      <stop offset="100%" style="stop-color:#b71c1c"/>
+    </linearGradient>
+    
+    <linearGradient id="water-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4fc3f7"/>
+      <stop offset="50%" style="stop-color:#0288d1"/>
+      <stop offset="100%" style="stop-color:#01579b"/>
+    </linearGradient>
   </defs>
-
-  <!-- Row 1: Resources -->
-  <!-- Iron Ore -->
+  
+  <!-- ============================================ -->
+  <!-- ROW 0: RECURSOS BÁSICOS (y=0) -->
+  <!-- ============================================ -->
+  
+  <!-- Iron Ore - Cubo metálico rugoso -->
   <g transform="translate(0,0)">
-    <circle cx="20" cy="20" r="15" fill="#a1887f" stroke="#5d4037" stroke-width="2"/>
-    <circle cx="15" cy="15" r="5" fill="#d7ccc8" opacity="0.5"/>
+    <!-- Cara inferior -->
+    <path d="M32 56 L56 44 L56 20 L32 32 Z" fill="#37474f"/>
+    <!-- Cara derecha -->
+    <path d="M56 20 L64 28 L64 52 L56 44 Z" fill="#455a64"/>
+    <!-- Cara superior -->
+    <path d="M32 32 L56 20 L64 28 L40 40 Z" fill="url(#iron-grad)"/>
+    <!-- Detalles de textura -->
+    <path d="M36 36 L44 32 M48 28 L52 26 M40 44 L48 40" stroke="#263238" stroke-width="1" opacity="0.5"/>
   </g>
-  <!-- Copper Ore -->
-  <g transform="translate(40,0)">
-    <circle cx="20" cy="20" r="15" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
-    <circle cx="15" cy="15" r="5" fill="#f39c12" opacity="0.5"/>
+  
+  <!-- Copper Ore - Cubo cobrizo -->
+  <g transform="translate(64,0)">
+    <path d="M32 56 L56 44 L56 20 L32 32 Z" fill="#bf360c"/>
+    <path d="M56 20 L64 28 L64 52 L56 44 Z" fill="#e65100"/>
+    <path d="M32 32 L56 20 L64 28 L40 40 Z" fill="url(#copper-grad)"/>
+    <circle cx="48" cy="32" r="4" fill="#ffcc80" opacity="0.6"/>
   </g>
-  <!-- Stone -->
-  <g transform="translate(80,0)">
-    <rect x="5" y="5" width="30" height="30" rx="5" fill="#95a5a6" stroke="#7f8c8d" stroke-width="2"/>
-    <path d="M10 10 L30 30 M30 10 L10 30" stroke="#bdc3c7" stroke-width="2"/>
+  
+  <!-- Stone - Cubo de piedra -->
+  <g transform="translate(128,0)">
+    <path d="M32 56 L56 44 L56 20 L32 32 Z" fill="#616161"/>
+    <path d="M56 20 L64 28 L64 52 L56 44 Z" fill="#757575"/>
+    <path d="M32 32 L56 20 L64 28 L40 40 Z" fill="url(#stone-grad)"/>
+    <!-- Grietas -->
+    <path d="M38 36 L44 34 M50 30 L54 28 M42 42 L48 38" stroke="#424242" stroke-width="1.5"/>
   </g>
-  <!-- Coal -->
-  <g transform="translate(120,0)">
-    <path d="M10 20 L20 5 L30 20 L25 35 L15 35 Z" fill="#2c3e50" stroke="#000" stroke-width="2"/>
+  
+  <!-- Coal - Cubo negro brillante -->
+  <g transform="translate(192,0)">
+    <path d="M32 56 L56 44 L56 20 L32 32 Z" fill="#212121"/>
+    <path d="M56 20 L64 28 L64 52 L56 44 Z" fill="#424242"/>
+    <path d="M32 32 L56 20 L64 28 L40 40 Z" fill="url(#coal-grad)"/>
+    <!-- Brillo -->
+    <ellipse cx="44" cy="28" rx="6" ry="3" fill="#616161" opacity="0.5"/>
   </g>
-
-  <!-- Row 2: Products -->
-  <!-- Iron Ingot -->
-  <g transform="translate(0,40)">
-    <rect x="5" y="10" width="30" height="20" rx="2" fill="#bdc3c7" stroke="#7f8c8d" stroke-width="2"/>
-    <path d="M10 15 L30 15" stroke="#ecf0f1" stroke-width="2"/>
+  
+  <!-- ============================================ -->
+  <!-- ROW 1: PRODUCTOS BÁSICOS (y=64) -->
+  <!-- ============================================ -->
+  
+  <!-- Iron Ingot - Lingote metálico -->
+  <g transform="translate(0,64)">
+    <path d="M28 52 L52 40 L52 28 L28 40 Z" fill="#546e7a"/>
+    <path d="M52 28 L60 32 L60 44 L52 40 Z" fill="#78909c"/>
+    <path d="M28 40 L52 28 L60 32 L36 44 Z" fill="url(#iron-grad)"/>
+    <!-- Brillo metálico -->
+    <path d="M32 38 L48 30" stroke="#eceff1" stroke-width="2" opacity="0.6"/>
   </g>
+  
   <!-- Copper Ingot -->
-  <g transform="translate(40,40)">
-    <rect x="5" y="10" width="30" height="20" rx="2" fill="#d35400" stroke="#e67e22" stroke-width="2"/>
-    <path d="M10 15 L30 15" stroke="#f39c12" stroke-width="2"/>
+  <g transform="translate(64,64)">
+    <path d="M28 52 L52 40 L52 28 L28 40 Z" fill="#e65100"/>
+    <path d="M52 28 L60 32 L60 44 L52 40 Z" fill="#ff9800"/>
+    <path d="M28 40 L52 28 L60 32 L36 44 Z" fill="url(#copper-grad)"/>
+    <path d="M32 38 L48 30" stroke="#ffecb3" stroke-width="2" opacity="0.6"/>
   </g>
-  <!-- Gear -->
-  <g transform="translate(80,40)">
-    <circle cx="20" cy="20" r="10" fill="none" stroke="#7f8c8d" stroke-width="6" stroke-dasharray="4 2"/>
-    <circle cx="20" cy="20" r="5" fill="#95a5a6"/>
+  
+  <!-- Gear - Engranaje 3D -->
+  <g transform="translate(128,64)">
+    <circle cx="48" cy="36" r="20" fill="url(#metal-grad)" filter="url(#shadow3d)"/>
+    <circle cx="48" cy="36" r="14" fill="#757575"/>
+    <circle cx="48" cy="36" r="8" fill="#424242"/>
+    <!-- Dientes del engranaje -->
+    <rect x="44" y="12" width="8" height="8" fill="#9e9e9e"/>
+    <rect x="44" y="52" width="8" height="8" fill="#757575"/>
+    <rect x="24" y="32" width="8" height="8" fill="#9e9e9e"/>
+    <rect x="64" y="32" width="8" height="8" fill="#757575"/>
   </g>
-  <!-- Wire -->
-  <g transform="translate(120,40)">
-    <circle cx="20" cy="20" r="12" fill="none" stroke="#e67e22" stroke-width="3"/>
-    <rect x="18" y="5" width="4" height="10" fill="#e67e22"/>
-    <rect x="18" y="25" width="4" height="10" fill="#e67e22"/>
+  
+  <!-- Wire - Cable de cobre -->
+  <g transform="translate(192,64)">
+    <path d="M20 40 Q32 20 44 40 T68 40" stroke="url(#copper-grad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M20 46 Q32 26 44 46 T68 46" stroke="#e65100" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M20 34 Q32 14 44 34 T68 34" stroke="#ffcc80" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
   </g>
-
-  <!-- Row 3: Buildings -->
-  <!-- Drill -->
-  <g transform="translate(0,80)">
+  
+  <!-- ============================================ -->
+  <!-- ROW 2: ELECTRÓNICA (y=128) -->
+  <!-- ============================================ -->
+  
+  <!-- Electronic Circuit -->
+  <g transform="translate(0,128)">
+    <rect x="24" y="24" width="48" height="32" rx="2" fill="url(#circuit-grad)" filter="url(#shadow3d)"/>
+    <!-- Circuitos -->
+    <path d="M32 32 H44 V40 H56" stroke="#81c784" stroke-width="2" fill="none"/>
+    <path d="M32 48 H40 V40" stroke="#81c784" stroke-width="2" fill="none"/>
+    <circle cx="44" cy="40" r="3" fill="#ffeb3b"/>
+    <rect x="52" y="28" width="8" height="4" fill="#424242"/>
+    <rect x="52" y="48" width="8" height="4" fill="#424242"/>
+  </g>
+  
+  <!-- Steel - Lingote de acero -->
+  <g transform="translate(64,128)">
+    <path d="M28 52 L52 40 L52 28 L28 40 Z" fill="#37474f"/>
+    <path d="M52 28 L60 32 L60 44 L52 40 Z" fill="#546e7a"/>
+    <path d="M28 40 L52 28 L60 32 L36 44 Z" fill="url(#metal-grad)"/>
+    <path d="M32 38 L48 30" stroke="#eceff1" stroke-width="2" opacity="0.8"/>
+    <text x="48" y="42" text-anchor="middle" font-size="8" fill="#37474f" font-weight="bold">Fe</text>
+  </g>
+  
+  <!-- Battery -->
+  <g transform="translate(128,128)">
+    <rect x="32" y="20" width="24" height="40" rx="3" fill="#424242" filter="url(#shadow3d)"/>
+    <rect x="36" y="16" width="16" height="6" fill="#212121"/>
+    <rect x="34" y="24" width="20" height="32" fill="#fbc02d"/>
+    <!-- Indicador de carga -->
+    <rect x="38" y="28" width="12" height="4" fill="#76ff03"/>
+    <rect x="38" y="34" width="12" height="4" fill="#76ff03"/>
+    <rect x="38" y="40" width="12" height="4" fill="#ffeb3b"/>
+    <rect x="38" y="46" width="12" height="4" fill="#ff5252"/>
+  </g>
+  
+  <!-- Advanced Circuit -->
+  <g transform="translate(192,128)">
+    <rect x="24" y="24" width="48" height="32" rx="2" fill="#1565c0" filter="url(#shadow3d)"/>
+    <rect x="28" y="28" width="40" height="24" rx="1" fill="#1976d2"/>
+    <!-- Circuitos complejos -->
+    <path d="M32 36 H40 V32 H48 V40 H56" stroke="#81d4fa" stroke-width="1.5" fill="none"/>
+    <path d="M32 44 H38 V40 H46 V48 H56" stroke="#81d4fa" stroke-width="1.5" fill="none"/>
+    <circle cx="40" cy="36" r="2" fill="#ffeb3b"/>
+    <circle cx="48" cy="40" r="2" fill="#ff5252"/>
+    <circle cx="46" cy="44" r="2" fill="#76ff03"/>
+  </g>
+  
+  <!-- ============================================ -->
+  <!-- ROW 3: EDIFICIOS BÁSICOS (y=192) -->
+  <!-- ============================================ -->
+  
+  <!-- Drill - Perforadora -->
+  <g transform="translate(0,192)">
     <!-- Base -->
-    <rect x="2" y="2" width="36" height="36" fill="#c0392b" rx="4"/>
-    <!-- Drill Head -->
-    <path d="M20 30 L10 10 L30 10 Z" fill="#f1c40f"/>
-    <animateTransform attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="2s" repeatCount="indefinite"/>
+    <path d="M24 56 L48 44 L72 56 L48 68 Z" fill="#455a64"/>
+    <!-- Torre -->
+    <path d="M36 48 L36 24 L48 18 L60 24 L60 48" fill="#78909c"/>
+    <path d="M36 24 L48 18 L60 24 L48 30 Z" fill="#b0bec5"/>
+    <!-- Taladro -->
+    <rect x="44" y="48" width="8" height="12" fill="#37474f"/>
+    <path d="M44 60 L40 68 M48 60 L48 70 M52 60 L56 68" stroke="#263238" stroke-width="2"/>
   </g>
-  <!-- Furnace -->
-  <g transform="translate(40,80)">
-    <rect x="2" y="2" width="36" height="36" fill="#e67e22" rx="4"/>
-    <circle cx="20" cy="20" r="12" fill="#d35400"/>
-    <circle cx="20" cy="20" r="8" fill="#f1c40f">
-       <animate attributeName="r" values="8;10;8" dur="1s" repeatCount="indefinite"/>
-    </circle>
+  
+  <!-- Furnace - Horno -->
+  <g transform="translate(64,192)">
+    <!-- Base -->
+    <path d="M28 56 L48 46 L68 56 L48 66 Z" fill="#5d4037"/>
+    <!-- Cuerpo -->
+    <path d="M32 48 L32 24 L48 16 L64 24 L64 48" fill="#8d6e63"/>
+    <path d="M32 24 L48 16 L64 24 L48 32 Z" fill="#a1887f"/>
+    <!-- Abertura del horno -->
+    <ellipse cx="48" cy="44" rx="10" ry="6" fill="#212121"/>
+    <ellipse cx="48" cy="44" rx="6" ry="4" fill="#ff5722" filter="url(#glow)"/>
+    <!-- Chimenea -->
+    <rect x="52" y="12" width="8" height="12" fill="#6d4c41"/>
+    <ellipse cx="56" cy="12" rx="4" ry="2" fill="#3e2723"/>
   </g>
-  <!-- Assembler -->
-  <g transform="translate(80,80)">
-    <rect x="2" y="2" width="36" height="36" fill="#2980b9" rx="4"/>
-    <rect x="10" y="10" width="20" height="20" fill="#3498db" rx="2"/>
+  
+  <!-- Assembler - Ensambladora -->
+  <g transform="translate(128,192)">
+    <!-- Base -->
+    <path d="M24 56 L48 44 L72 56 L48 68 Z" fill="#1565c0"/>
+    <!-- Cuerpo -->
+    <rect x="32" y="28" width="32" height="24" fill="#1976d2"/>
+    <path d="M32 28 L48 20 L64 28 L48 36 Z" fill="#42a5f5"/>
+    <!-- Brazo robótico -->
+    <rect x="40" y="32" width="4" height="12" fill="#424242"/>
+    <rect x="52" y="32" width="4" height="12" fill="#424242"/>
+    <circle cx="48" cy="38" r="6" fill="#ff9800"/>
+    <!-- Detalles -->
+    <rect x="36" y="44" width="24" height="4" fill="#0d47a1"/>
   </g>
-  <!-- Belt -->
-  <g transform="translate(120,80)">
-    <rect x="0" y="0" width="40" height="40" fill="#555"/>
-    <path d="M10 30 L20 10 L30 30" fill="none" stroke="#aaa" stroke-width="3"/>
-    <path d="M10 35 L20 15 L30 35" fill="none" stroke="#777" stroke-width="3"/>
+  
+  <!-- Belt - Cinta transportadora -->
+  <g transform="translate(192,192)">
+    <!-- Base -->
+    <path d="M16 52 L48 36 L80 52 L48 68 Z" fill="#37474f"/>
+    <!-- Cinta -->
+    <path d="M20 48 L48 34 L76 48 L48 62 Z" fill="#455a64"/>
+    <!-- Líneas de movimiento -->
+    <line x1="28" y1="44" x2="28" y2="56" stroke="#78909c" stroke-width="2"/>
+    <line x1="40" y1="38" x2="40" y2="58" stroke="#78909c" stroke-width="2"/>
+    <line x1="52" y1="38" x2="52" y2="58" stroke="#78909c" stroke-width="2"/>
+    <line x1="64" y1="44" x2="64" y2="56" stroke="#78909c" stroke-width="2"/>
   </g>
-
-  <!-- Row 4: Logistics -->
-  <!-- Inserter -->
-  <g transform="translate(0,120)">
-     <rect x="10" y="10" width="20" height="20" fill="#333"/>
-     <rect x="15" y="0" width="10" height="30" fill="#f1c40f"/>
-     <rect x="12" y="0" width="16" height="8" fill="#f39c12"/>
+  
+  <!-- ============================================ -->
+  <!-- ROW 4: LOGÍSTICA (y=256) -->
+  <!-- ============================================ -->
+  
+  <!-- Inserter - Brazo mecánico -->
+  <g transform="translate(0,256)">
+    <!-- Base -->
+    <ellipse cx="48" cy="56" rx="16" ry="8" fill="#ff9800"/>
+    <!-- Brazo -->
+    <rect x="44" y="32" width="8" height="24" fill="#f57c00"/>
+    <!-- Articulación -->
+    <circle cx="48" cy="32" r="8" fill="#ff5722"/>
+    <!-- Pinza -->
+    <path d="M44 24 L40 16 M52 24 L56 16" stroke="#e65100" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="48" cy="24" r="4" fill="#ffcc80"/>
   </g>
+  
   <!-- Filter Inserter -->
-  <g transform="translate(40,120)">
-     <rect x="10" y="10" width="20" height="20" fill="#333"/>
-     <rect x="15" y="0" width="10" height="30" fill="#8e44ad"/>
-     <rect x="12" y="0" width="16" height="8" fill="#9b59b6"/>
-     <circle cx="20" cy="15" r="3" fill="#fff"/>
+  <g transform="translate(64,256)">
+    <ellipse cx="48" cy="56" rx="16" ry="8" fill="#9c27b0"/>
+    <rect x="44" y="32" width="8" height="24" fill="#7b1fa2"/>
+    <circle cx="48" cy="32" r="8" fill="#e91e63"/>
+    <path d="M44 24 L40 16 M52 24 L56 16" stroke="#4a148c" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="48" cy="24" r="4" fill="#f48fb1"/>
+    <!-- Indicador de filtro -->
+    <rect x="56" y="48" width="8" height="8" fill="#fff" rx="2"/>
+  </g>
+  
+  <!-- Chest - Cofre -->
+  <g transform="translate(128,256)">
+    <!-- Base -->
+    <path d="M28 52 L48 42 L68 52 L48 62 Z" fill="#5d4037"/>
+    <!-- Tapa -->
+    <path d="M28 44 L48 34 L68 44 L48 54 Z" fill="#8d6e63"/>
+    <path d="M28 36 L48 26 L68 36 L48 46 Z" fill="#a1887f"/>
+    <!-- Cerradura -->
+    <rect x="44" y="40" width="8" height="6" fill="#ffd54f"/>
+    <circle cx="48" cy="43" r="2" fill="#212121"/>
+  </g>
+  
+  <!-- Tank - Tanque -->
+  <g transform="translate(192,256)">
+    <!-- Base -->
+    <ellipse cx="48" cy="56" rx="20" ry="10" fill="#455a64"/>
+    <!-- Cilindro -->
+    <rect x="28" y="24" width="40" height="32" fill="#607d8b"/>
+    <ellipse cx="48" cy="24" rx="20" ry="8" fill="#90a4ae"/>
+    <!-- Líquido -->
+    <ellipse cx="48" cy="32" rx="16" ry="6" fill="#0288d1" opacity="0.7"/>
+    <rect x="32" y="32" width="32" height="20" fill="#0288d1" opacity="0.5"/>
+    <!-- Tapa -->
+    <ellipse cx="48" cy="20" rx="8" ry="3" fill="#37474f"/>
+  </g>
+  
+  <!-- ============================================ -->
+  <!-- ROW 5: ENERGÍA (y=320) -->
+  <!-- ============================================ -->
+  
+  <!-- Pole - Poste eléctrico -->
+  <g transform="translate(0,320)">
+    <!-- Base -->
+    <ellipse cx="48" cy="60" rx="12" ry="6" fill="#5d4037"/>
+    <!-- Poste -->
+    <rect x="44" y="24" width="8" height="36" fill="#8d6e63"/>
+    <!-- Brazos -->
+    <rect x="32" y="28" width="32" height="4" fill="#6d4c41"/>
+    <rect x="36" y="22" width="24" height="4" fill="#6d4c41"/>
+    <!-- Aisladores -->
+    <circle cx="32" cy="26" r="3" fill="#eceff1"/>
+    <circle cx="64" cy="26" r="3" fill="#eceff1"/>
+    <circle cx="36" cy="32" r="3" fill="#eceff1"/>
+    <circle cx="60" cy="32" r="3" fill="#eceff1"/>
+  </g>
+  
+  <!-- Steam Engine - Motor de vapor -->
+  <g transform="translate(64,320)">
+    <!-- Base -->
+    <path d="M24 56 L48 44 L72 56 L48 68 Z" fill="#455a64"/>
+    <!-- Cilindro principal -->
+    <rect x="32" y="28" width="32" height="20" fill="url(#metal-grad)"/>
+    <ellipse cx="48" cy="28" rx="16" ry="6" fill="#e0e0e0"/>
+    <!-- Pistón -->
+    <rect x="40" y="20" width="16" height="12" fill="#78909c"/>
+    <rect x="44" y="16" width="8" height="8" fill="#37474f"/>
+    <!-- Escape de vapor -->
+    <ellipse cx="64" cy="36" rx="4" ry="6" fill="#b0bec5"/>
+    <path d="M66 30 Q70 24 68 20 M66 32 Q72 28 70 22" stroke="#eceff1" stroke-width="1.5" opacity="0.6"/>
+  </g>
+  
+  <!-- Solar Panel -->
+  <g transform="translate(128,320)">
+    <!-- Base -->
+    <path d="M28 56 L48 46 L68 56 L48 66 Z" fill="#455a64"/>
+    <!-- Panel -->
+    <path d="M28 48 L48 38 L68 48 L48 58 Z" fill="#1565c0"/>
+    <path d="M28 40 L48 30 L68 40 L48 50 Z" fill="#1976d2"/>
+    <!-- Celdas solares -->
+    <line x1="38" y1="35" x2="38" y2="53" stroke="#0d47a1" stroke-width="1"/>
+    <line x1="48" y1="30" x2="48" y2="58" stroke="#0d47a1" stroke-width="1"/>
+    <line x1="58" y1="35" x2="58" y2="53" stroke="#0d47a1" stroke-width="1"/>
+    <line x1="28" y1="44" x2="68" y2="44" stroke="#0d47a1" stroke-width="1"/>
+    <!-- Brillo -->
+    <path d="M32 42 L44 36" stroke="#81d4fa" stroke-width="2" opacity="0.5"/>
+  </g>
+  
+  <!-- Nuclear Reactor -->
+  <g transform="translate(192,320)">
+    <!-- Base -->
+    <path d="M24 56 L48 44 L72 56 L48 68 Z" fill="#37474f"/>
+    <!-- Contenedor principal -->
+    <rect x="32" y="24" width="32" height="24" fill="#455a64"/>
+    <path d="M32 24 L48 16 L64 24 L48 32 Z" fill="#607d8b"/>
+    <!-- Puerta de acceso -->
+    <rect x="40" y="28" width="16" height="16" fill="#263238"/>
+    <rect x="42" y="30" width="12" height="12" fill="url(#uranium-grad)" filter="url(#glow)"/>
+    <!-- Radiación símbolo -->
+    <circle cx="48" cy="36" r="4" fill="#212121"/>
+    <path d="M48 32 L50 28 L46 28 Z" fill="#212121"/>
+    <path d="M52 38 L56 40 L54 36 Z" fill="#212121"/>
+    <path d="M44 38 L40 40 L42 36 Z" fill="#212121"/>
+  </g>
+  
+  <!-- ============================================ -->
+  <!-- ROW 6: RECURSOS ESPECIALES (y=384) -->
+  <!-- ============================================ -->
+  
+  <!-- Oil - Petróleo -->
+  <g transform="translate(0,384)">
+    <path d="M32 56 L56 44 L56 20 L32 32 Z" fill="#212121"/>
+    <path d="M56 20 L64 28 L64 52 L56 44 Z" fill="#424242"/>
+    <path d="M32 32 L56 20 L64 28 L40 40 Z" fill="url(#oil-grad)"/>
+    <!-- Brillo aceitoso -->
+    <ellipse cx="44" cy="30" rx="8" ry="4" fill="#616161" opacity="0.4"/>
+  </g>
+  
+  <!-- Plastic -->
+  <g transform="translate(64,384)">
+    <path d="M28 52 L52 40 L52 28 L28 40 Z" fill="#bdbdbd"/>
+    <path d="M52 28 L60 32 L60 44 L52 40 Z" fill="#9e9e9e"/>
+    <path d="M28 40 L52 28 L60 32 L36 44 Z" fill="url(#plastic-grad)"/>
+    <rect x="32" y="38" width="20" height="2" fill="#e0e0e0"/>
+  </g>
+  
+  <!-- Uranium Ore -->
+  <g transform="translate(128,384)">
+    <path d="M32 56 L56 44 L56 20 L32 32 Z" fill="#33691e"/>
+    <path d="M56 20 L64 28 L64 52 L56 44 Z" fill="#558b2f"/>
+    <path d="M32 32 L56 20 L64 28 L40 40 Z" fill="url(#uranium-grad)"/>
+    <!-- Brillo radiactivo -->
+    <circle cx="44" cy="32" r="6" fill="#76ff03" opacity="0.4" filter="url(#glow)"/>
+  </g>
+  
+  <!-- Uranium Cell -->
+  <g transform="translate(192,384)">
+    <rect x="32" y="20" width="24" height="40" rx="2" fill="#424242" filter="url(#shadow3d)"/>
+    <rect x="36" y="16" width="16" height="6" fill="#212121"/>
+    <!-- Barras de combustible -->
+    <rect x="34" y="24" width="20" height="8" fill="#76ff03" filter="url(#glow)"/>
+    <rect x="34" y="34" width="20" height="8" fill="#76ff03" filter="url(#glow)"/>
+    <rect x="34" y="44" width="20" height="8" fill="#76ff03" filter="url(#glow)"/>
+    <!-- Rayos -->
+    <line x1="28" y1="28" x2="24" y2="24" stroke="#76ff03" stroke-width="1" opacity="0.6"/>
+    <line x1="60" y1="28" x2="64" y2="24" stroke="#76ff03" stroke-width="1" opacity="0.6"/>
+  </g>
+  
+  <!-- ============================================ -->
+  <!-- ROW 7: EDIFICIOS AVANZADOS (y=448) -->
+  <!-- ============================================ -->
+  
+  <!-- Pumpjack - Bomba de petróleo -->
+  <g transform="translate(0,448)">
+    <!-- Base -->
+    <path d="M24 56 L48 44 L72 56 L48 68 Z" fill="#5d4037"/>
+    <!-- Torre -->
+    <rect x="40" y="28" width="8" height="20" fill="#8d6e63"/>
+    <!-- Cabezal -->
+    <rect x="36" y="24" width="16" height="8" fill="#a1887f"/>
+    <!-- Brazo oscilante -->
+    <line x1="44" y1="28" x2="56" y2="20" stroke="#6d4c41" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="56" cy="20" r="4" fill="#ff9800"/>
+    <!-- Contrapeso -->
+    <rect x="32" y="26" width="6" height="8" fill="#424242"/>
+  </g>
+  
+  <!-- Refinery -->
+  <g transform="translate(64,448)">
+    <!-- Base -->
+    <path d="M24 56 L48 44 L72 56 L48 68 Z" fill="#455a64"/>
+    <!-- Torre de destilación 1 -->
+    <rect x="32" y="20" width="12" height="28" fill="#607d8b"/>
+    <rect x="34" y="16" width="8" height="4" fill="#37474f"/>
+    <!-- Torre de destilación 2 -->
+    <rect x="52" y="24" width="12" height="24" fill="#78909c"/>
+    <rect x="54" y="20" width="8" height="4" fill="#455a64"/>
+    <!-- Tubos conectores -->
+    <rect x="44" y="32" width="8" height="4" fill="#37474f"/>
+    <!-- Indicadores -->
+    <circle cx="38" cy="28" r="2" fill="#4caf50"/>
+    <circle cx="58" cy="32" r="2" fill="#ff9800"/>
+  </g>
+  
+  <!-- Centrifuge -->
+  <g transform="translate(128,448)">
+    <!-- Base -->
+    <path d="M28 56 L48 46 L68 56 L48 66 Z" fill="#37474f"/>
+    <!-- Cámara circular -->
+    <circle cx="48" cy="36" r="18" fill="#455a64"/>
+    <circle cx="48" cy="36" r="14" fill="#607d8b"/>
+    <!-- Rotor -->
+    <circle cx="48" cy="36" r="10" fill="#76ff03" opacity="0.3"/>
+    <rect x="44" y="28" width="8" height="16" fill="#76ff03" opacity="0.5"/>
+    <rect x="40" y="32" width="16" height="8" fill="#76ff03" opacity="0.5"/>
+    <!-- Indicador -->
+    <circle cx="48" cy="36" r="4" fill="#76ff03" filter="url(#glow)"/>
+  </g>
+  
+  <!-- Electric Drill -->
+  <g transform="translate(192,448)">
+    <!-- Base -->
+    <path d="M24 56 L48 44 L72 56 L48 68 Z" fill="#1565c0"/>
+    <!-- Cuerpo -->
+    <rect x="36" y="24" width="24" height="24" fill="#1976d2"/>
+    <path d="M36 24 L48 18 L60 24 L48 30 Z" fill="#42a5f5"/>
+    <!-- Cabezal de perforación -->
+    <rect x="40" y="48" width="16" height="8" fill="#37474f"/>
+    <path d="M40 56 L36 64 M48 56 L48 68 M56 56 L60 64" stroke="#263238" stroke-width="2"/>
+    <!-- Conexión eléctrica -->
+    <rect x="44" y="20" width="8" height="6" fill="#ffeb3b"/>
+  </g>
+  
+  <!-- ============================================ -->
+  <!-- ROW 8: MILITAR (y=512) -->
+  <!-- ============================================ -->
+  
+  <!-- Turret - Torreta -->
+  <g transform="translate(0,512)">
+    <!-- Base -->
+    <ellipse cx="48" cy="56" rx="18" ry="10" fill="#37474f"/>
+    <!-- Soporte -->
+    <rect x="42" y="40" width="12" height="16" fill="#455a64"/>
+    <!-- Cañón -->
+    <rect x="44" y="28" width="8" height="16" fill="#607d8b"/>
+    <rect x="42" y="24" width="12" height="8" fill="#78909c"/>
+    <!-- Boca del cañón -->
+    <ellipse cx="48" cy="24" rx="4" ry="2" fill="#212121"/>
+    <!-- Indicador láser -->
+    <circle cx="48" cy="32" r="2" fill="#ff5252" filter="url(#glow)"/>
+  </g>
+  
+  <!-- Wall - Muro -->
+  <g transform="translate(64,512)">
+    <!-- Base -->
+    <path d="M28 56 L48 46 L68 56 L48 66 Z" fill="#616161"/>
+    <!-- Muro -->
+    <path d="M28 48 L28 24 L48 14 L68 24 L68 48 L48 58 Z" fill="url(#stone-grad)"/>
+    <path d="M28 24 L48 14 L68 24 L48 34 Z" fill="#9e9e9e"/>
+    <!-- Bloques individuales -->
+    <line x1="38" y1="19" x2="38" y2="53" stroke="#616161" stroke-width="1"/>
+    <line x1="58" y1="19" x2="58" y2="53" stroke="#616161" stroke-width="1"/>
+    <line x1="28" y1="36" x2="68" y2="36" stroke="#616161" stroke-width="1"/>
+  </g>
+  
+  <!-- Rail - Vía de tren -->
+  <g transform="translate(128,512)">
+    <!-- Durmientes -->
+    <rect x="16" y="48" width="64" height="8" fill="#5d4037"/>
+    <!-- Rieles -->
+    <rect x="16" y="44" width="64" height="4" fill="#78909c"/>
+    <rect x="16" y="56" width="64" height="4" fill="#78909c"/>
+    <!-- Brillo metálico -->
+    <rect x="16" y="45" width="64" height="1" fill="#eceff1" opacity="0.5"/>
+    <rect x="16" y="57" width="64" height="1" fill="#eceff1" opacity="0.5"/>
+  </g>
+  
+  <!-- Train Station -->
+  <g transform="translate(192,512)">
+    <!-- Andén -->
+    <path d="M24 56 L48 44 L72 56 L48 68 Z" fill="#616161"/>
+    <!-- Edificio -->
+    <rect x="32" y="28" width="32" height="20" fill="#ff7043"/>
+    <path d="M32 28 L48 20 L64 28 L48 36 Z" fill="#ff8a65"/>
+    <!-- Techo -->
+    <path d="M28 28 L48 18 L68 28" stroke="#bf360c" stroke-width="3" fill="none"/>
+    <!-- Puerta -->
+    <rect x="40" y="36" width="16" height="12" fill="#3e2723"/>
+    <!-- Letrero -->
+    <rect x="36" y="30" width="24" height="6" fill="#fff"/>
+    <text x="48" y="35" text-anchor="middle" font-size="5" fill="#bf360c" font-weight="bold">STOP</text>
+  </g>
+  
+  <!-- ============================================ -->
+  <!-- ROW 9: HUB Y ESPECIALES (y=576) -->
+  <!-- ============================================ -->
+  
+  <!-- Hub - Centro de comando -->
+  <g transform="translate(0,576)">
+    <!-- Base -->
+    <path d="M24 56 L48 44 L72 56 L48 68 Z" fill="#1565c0"/>
+    <!-- Cuerpo principal -->
+    <rect x="32" y="24" width="32" height="24" fill="#1976d2"/>
+    <path d="M32 24 L48 16 L64 24 L48 32 Z" fill="#42a5f5"/>
+    <!-- Antena -->
+    <line x1="48" y1="16" x2="48" y2="8" stroke="#37474f" stroke-width="2"/>
+    <circle cx="48" cy="6" r="3" fill="#ff5252" filter="url(#glow)"/>
+    <!-- Pantalla/Panel -->
+    <rect x="36" y="28" width="24" height="12" fill="#212121"/>
+    <rect x="38" y="30" width="20" height="8" fill="#00ff9d" opacity="0.3"/>
+    <!-- Líneas de datos -->
+    <line x1="40" y1="32" x2="56" y2="32" stroke="#00ff9d" stroke-width="1" opacity="0.8"/>
+    <line x1="40" y1="36" x2="52" y2="36" stroke="#00ff9d" stroke-width="1" opacity="0.8"/>
+  </g>
+  
+  <!-- Train - Tren -->
+  <g transform="translate(64,576)">
+    <!-- Vías -->
+    <rect x="16" y="52" width="64" height="8" fill="#5d4037"/>
+    <rect x="16" y="48" width="64" height="4" fill="#78909c"/>
+    <rect x="16" y="60" width="64" height="4" fill="#78909c"/>
+    <!-- Locomotora -->
+    <rect x="28" y="32" width="40" height="20" fill="#ff7043"/>
+    <path d="M28 32 L48 24 L68 32 L48 40 Z" fill="#ff8a65"/>
+    <!-- Cabina -->
+    <rect x="52" y="28" width="12" height="12" fill="#bf360c"/>
+    <rect x="54" y="30" width="8" height="6" fill="#81d4fa"/>
+    <!-- Ruedas -->
+    <circle cx="36" cy="56" r="4" fill="#37474f"/>
+    <circle cx="60" cy="56" r="4" fill="#37474f"/>
+    <!-- Escape -->
+    <rect x="32" y="26" width="4" height="8" fill="#424242"/>
+  </g>
+  
+  <!-- ============================================ -->
+  <!-- ROW 10: EFECTOS Y DECORACIÓN (y=640) -->
+  <!-- ============================================ -->
+  
+  <!-- Explosion -->
+  <g transform="translate(0,640)">
+    <circle cx="48" cy="40" r="20" fill="#ff5722" opacity="0.3" filter="url(#glow)"/>
+    <circle cx="48" cy="40" r="14" fill="#ff9800" opacity="0.5"/>
+    <circle cx="48" cy="40" r="8" fill="#ffeb3b"/>
+    <path d="M48 16 L52 28 L48 24 L44 28 Z" fill="#ff5722"/>
+    <path d="M48 64 L52 52 L48 56 L44 52 Z" fill="#ff5722"/>
+    <path d="M24 40 L36 44 L32 40 L36 36 Z" fill="#ff5722"/>
+    <path d="M72 40 L60 44 L64 40 L60 36 Z" fill="#ff5722"/>
+  </g>
+  
+  <!-- Smoke -->
+  <g transform="translate(64,640)">
+    <circle cx="40" cy="48" r="10" fill="#bdbdbd" opacity="0.4"/>
+    <circle cx="48" cy="40" r="12" fill="#e0e0e0" opacity="0.3"/>
+    <circle cx="56" cy="32" r="8" fill="#f5f5f5" opacity="0.2"/>
+  </g>
+  
+  <!-- Spark -->
+  <g transform="translate(128,640)">
+    <circle cx="48" cy="40" r="4" fill="#ffeb3b" filter="url(#glow)"/>
+    <line x1="48" y1="32" x2="48" y2="24" stroke="#ffeb3b" stroke-width="2"/>
+    <line x1="48" y1="48" x2="48" y2="56" stroke="#ffeb3b" stroke-width="2"/>
+    <line x1="40" y1="40" x2="32" y2="40" stroke="#ffeb3b" stroke-width="2"/>
+    <line x1="56" y1="40" x2="64" y2="40" stroke="#ffeb3b" stroke-width="2"/>
+  </g>
+  
+  <!-- Construction Zone -->
+  <g transform="translate(192,640)">
+    <rect x="32" y="32" width="32" height="32" fill="none" stroke="#ffeb3b" stroke-width="2" stroke-dasharray="4,4"/>
+    <line x1="32" y1="32" x2="64" y2="64" stroke="#ffeb3b" stroke-width="1" opacity="0.5"/>
+    <line x1="64" y1="32" x2="32" y2="64" stroke="#ffeb3b" stroke-width="1" opacity="0.5"/>
+  </g>
+  
+  <!-- ============================================ -->
+  <!-- ROW 11: RECURSOS ADICIONALES (y=704) -->
+  <!-- ============================================ -->
+  
+  <!-- Water -->
+  <g transform="translate(0,704)">
+    <path d="M32 56 L56 44 L56 20 L32 32 Z" fill="#01579b"/>
+    <path d="M56 20 L64 28 L64 52 L56 44 Z" fill="#0288d1"/>
+    <path d="M32 32 L56 20 L64 28 L40 40 Z" fill="url(#water-grad)"/>
+    <!-- Ondas -->
+    <path d="M36 36 Q40 34 44 36" stroke="#4fc3f7" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M40 40 Q44 38 48 40" stroke="#4fc3f7" stroke-width="1.5" fill="none" opacity="0.6"/>
+  </g>
+  
+  <!-- Wood -->
+  <g transform="translate(64,704)">
+    <path d="M32 56 L56 44 L56 20 L32 32 Z" fill="#5d4037"/>
+    <path d="M56 20 L64 28 L64 52 L56 44 Z" fill="#8d6e63"/>
+    <path d="M32 32 L56 20 L64 28 L40 40 Z" fill="#a1887f"/>
+    <!-- Vetas -->
+    <path d="M36 36 L44 32 M40 40 L48 36" stroke="#5d4037" stroke-width="1" opacity="0.5"/>
+  </g>
+  
+  <!-- Sand -->
+  <g transform="translate(128,704)">
+    <path d="M32 56 L56 44 L56 20 L32 32 Z" fill="#f9a825"/>
+    <path d="M56 20 L64 28 L64 52 L56 44 Z" fill="#fbc02d"/>
+    <path d="M32 32 L56 20 L64 28 L40 40 Z" fill="#ffee58"/>
+    <!-- Granos -->
+    <circle cx="40" cy="34" r="1" fill="#f57f17"/>
+    <circle cx="48" cy="30" r="1" fill="#f57f17"/>
+    <circle cx="44" cy="38" r="1" fill="#f57f17"/>
+  </g>
+  
+  <!-- Glass -->
+  <g transform="translate(192,704)">
+    <path d="M32 56 L56 44 L56 20 L32 32 Z" fill="#37474f" opacity="0.3"/>
+    <path d="M56 20 L64 28 L64 52 L56 44 Z" fill="#546e7a" opacity="0.4"/>
+    <path d="M32 32 L56 20 L64 28 L40 40 Z" fill="#b3e5fc" opacity="0.5"/>
+    <!-- Reflejos -->
+    <path d="M36 34 L44 30" stroke="#fff" stroke-width="2" opacity="0.6"/>
+    <path d="M40 38 L48 34" stroke="#fff" stroke-width="1" opacity="0.4"/>
+  </g>
+  
+  <!-- Storage Unit - Almacenador -->
+  <g transform="translate(256,128)">
+    <!-- Base/sombra -->
+    <path d="M20 56 L48 42 L76 56 L48 70 Z" fill="#3e2723" filter="url(#shadow3d)"/>
+    <!-- Cuerpo principal - caja de madera -->
+    <path d="M24 48 L48 36 L72 48 L48 60 Z" fill="#5d4037"/>
+    <path d="M24 48 L24 32 L48 20 L48 36 Z" fill="#8d6e63"/>
+    <path d="M48 36 L72 48 L72 32 L48 20 Z" fill="#6d4c41"/>
+    <!-- Tapa abierta -->
+    <path d="M24 32 L48 20 L72 32 L48 44 Z" fill="#a1887f"/>
+    <path d="M24 32 L48 20 L48 12 L24 24 Z" fill="#d7ccc8"/>
+    <path d="M48 20 L72 32 L72 24 L48 12 Z" fill="#bcaaa4"/>
+    <!-- Items dentro (visibles) -->
+    <ellipse cx="36" cy="38" rx="6" ry="3" fill="#b0bec5"/>
+    <ellipse cx="52" cy="42" rx="5" ry="2.5" fill="#ff9800"/>
+    <ellipse cx="44" cy="34" rx="4" ry="2" fill="#4caf50"/>
+    <!-- Cerradura metálica -->
+    <rect x="44" y="46" width="8" height="6" fill="#ffd54f"/>
+    <circle cx="48" cy="49" r="2" fill="#212121"/>
+    <!-- Refuerzos metálicos en esquinas -->
+    <rect x="26" y="38" width="4" height="4" fill="#78909c"/>
+    <rect x="66" y="46" width="4" height="4" fill="#78909c"/>
+    <rect x="26" y="50" width="4" height="4" fill="#78909c"/>
+    <rect x="66" y="54" width="4" height="4" fill="#78909c"/>
   </g>
 </svg>
